@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Curso</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            background-color: #eef2f7;
+            padding: 0;
+            color: #333;
+            height: 100vh;
+            margin: 0;
+        }
+        .top-bar {
+            background-color: #2d89ef; /* Cor azul da listra */
+            width: 100%;
+            height: 120px; /* Ajuste a altura da listra como desejar */
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1; /* Faz com que a listra fique atrás do conteúdo */
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
+            position: relative;
+            margin-top: 50px; /* Espaçamento para o formulário não ficar colado no topo */
+        }
+        .container:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        h1 {
+            color: #2d89ef;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        .message {
+            color: #d9534f;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-top: 20px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #555;
+        }
+        input[type="text"],
+        input[type="number"],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            font-size: 1rem;
+            transition: border-color 0.3s ease, background-color 0.3s ease;
+        }
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        textarea:focus {
+            border-color: #2d89ef;
+            background-color: #ffffff;
+            outline: none;
+        }
+        textarea {
+            height: 90px;
+            resize: none;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 30px;
+            background-color: #2d89ef;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 8px rgba(45, 137, 239, 0.3);
+        }
+        button:hover {
+            background-color: #256cbf;
+        }
+        button:active {
+            background-color: #1e5ca1;
+            box-shadow: 0 2px 4px rgba(45, 137, 239, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar"></div> <!-- Barra azul que fica atrás da aba de adicionar curso -->
+    <div class="container">
+        <h1>Adicionar Novo Curso</h1>
+        <!-- Exibe a mensagem de sucesso ou erro -->
+        <?php if (!empty($mensagem)): ?>
+            <p class="message"><?php echo $mensagem; ?></p>
+        <?php endif; ?>
+        <!-- Formulário para adicionar um novo curso -->
+        <form method="POST" action="adicionar_curso.php">
+            <label for="nome">Nome do Curso</label>
+            <input type="text" name="nome" id="nome" required>
+            
+            <label for="categoria">Categoria</label>
+            <input type="text" name="categoria" id="categoria" required>
+            
+            <label for="descricao">Descrição</label>
+            <textarea name="descricao" id="descricao"></textarea>
+            
+            <label for="preco">Preço (R$)</label>
+            <input type="number" name="preco" id="preco" step="0.01" required>
+            
+            <button type="submit">Adicionar Curso</button>
+        </form>
+    </div>
+</body>
+</html>

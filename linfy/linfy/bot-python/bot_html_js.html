@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot de Suporte</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        #chat-container {
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+        }
+        #messages {
+            height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        #user-input {
+            width: calc(100% - 100px);
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        #send-button {
+            padding: 10px;
+            border: none;
+            background-color: #28a745;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #send-button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+<div id="chat-container">
+    <h2>Chatbot de Suporte</h2>
+    <div id="messages"></div>
+    <input type="text" id="user-input" placeholder="Digite sua pergunta aqui..." />
+    <button id="send-button">Enviar</button>
+</div>
+
+<script>
+// Perguntas e respostas frequentes
+const faq = {
+    "como faço uma compra": "Para fazer uma compra, adicione os produtos ao carrinho e vá até 'Finalizar compra'. Preencha os dados de pagamento e confirme.",
+    "como rastrear meu pedido": "Para rastrear seu pedido, acesse 'Meus pedidos' e clique no pedido desejado para ver o status de envio.",
+    "quais são os métodos de pagamento": "Aceitamos pagamentos com cartão de crédito, débito e boleto bancário.",
+    "como cancelar um pedido": "Para cancelar um pedido, acesse 'Meus pedidos' e clique na opção de cancelamento do pedido desejado.",
+    "como trocar um produto": "Para trocar um produto, entre em contato com nosso suporte ao cliente dentro do prazo de troca.",
+    "quais são os prazos de entrega": "Os prazos de entrega variam de acordo com a sua localização e a forma de envio escolhida."
+};
+
+// Função para processar perguntas
+function responderPergunta(pergunta) {
+    pergunta = pergunta.toLowerCase();
+
+    for (let chave in faq) {
+        if (pergunta.includes(chave)) {
+            return faq[chave];
+        }
+    }
+
+    return "Desculpe, não entendi sua pergunta. Poderia reformular ou tente perguntar algo diferente?";
+}
+
+// Função para adicionar mensagens ao chat
+function adicionarMensagem(mensagem, autor) {
+    const messagesDiv = document.getElementById('messages');
+    const messageElement = document.createElement('div');
+    messageElement.textContent = `${autor}: ${mensagem}`;
+    messagesDiv.appendChild(messageElement);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight; // Rolagem automática
+}
+
+// Função para lidar com o envio de perguntas
+function enviarPergunta() {
+    const inputElement = document.getElementById('user-input');
+    const pergunta = inputElement.value.trim();
+
+    if (pergunta) {
+        adicionarMensagem(pergunta, 'Você');
+        const resposta = responderPergunta(pergunta);
+        adicionarMensagem(resposta, 'Suporte');
+        inputElement.value = ''; // Limpar o campo de entrada
+    }
+}
+
+// Adicionar evento ao botão de envio
+document.getElementById('send-button').addEventListener('click', enviarPergunta);
+
+// Adicionar evento ao pressionar Enter
+document.getElementById('user-input').addEventListener('keypress', function (event) {
+    if (event.key === 'Enter') {
+        enviarPergunta();
+    }
+});
+</script>
+
+</body>
+</html>

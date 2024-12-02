@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Pesquisar e Categorias</title>
+    <style>
+        /* Resetando alguns estilos padrão */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        /* Estilos gerais */
+        body {
+            background-color: #fff;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #ff00d4; /* Rosa suave */
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        button {
+            background-color: #ff00d4; /* Rosa */
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #e200bc; /* Rosa mais escuro no hover */
+        }
+
+        button:active {
+            background-color: #c200a1; /* Rosa mais forte no click */
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Bem-vindo ao nosso site</h2>
+
+        <!-- Barra de Pesquisa -->
+        <div class="input-group">
+            <label for="search">Buscar</label>
+            <input type="text" id="search" placeholder="O que você está procurando?">
+        </div>
+
+        <!-- Seleção de Categorias -->
+        <div class="input-group">
+            <label for="categoria">Escolha uma categoria</label>
+            <select id="categoria">
+                <option value="tecnologia">Tecnologia</option>
+                <option value="saude">Saúde</option>
+                <option value="educacao">Educação</option>
+                <option value="entretenimento">Entretenimento</option>
+            </select>
+        </div>
+
+        <!-- Botões de Login e Registro -->
+        <div class="button-container">
+            <button id="entrarBtn">Entrar</button>
+            <button id="registrarBtn">Registrar</button>
+        </div>
+    </div>
+
+    <script>
+        // Captura os botões
+        const entrarBtn = document.getElementById('entrarBtn');
+        const registrarBtn = document.getElementById('registrarBtn');
+
+        // Adiciona os eventos de clique aos botões
+        entrarBtn.addEventListener('click', function() {
+            alert('Você clicou em Entrar!');
+        });
+
+        registrarBtn.addEventListener('click', function() {
+            alert('Você clicou em Registrar!');
+        });
+    </script>
+</body>
+</html>

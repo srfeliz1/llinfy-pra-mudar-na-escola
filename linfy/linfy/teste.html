@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark-mode/Litgh-mode</title>
+    <style>
+/* Estilos gerais */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Modo Claro */
+body.light-mode {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* Modo Escuro */
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.container {
+    text-align: center;
+    padding: 50px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Dark Mode / Light Mode</h1>
+        <p>Este é um exemplo de alternância entre modos claro e escuro.</p>
+        <button id="toggleMode">Alternar Modo</button>
+    </div>
+
+    
+    <script>
+        // Seleciona o botão e o corpo
+const toggleButton = document.getElementById('toggleMode');
+const body = document.body;
+
+// Alterna entre modos
+toggleButton.addEventListener('click', () => {
+    if (body.classList.contains('dark-mode')) {
+        body.classList.remove('dark-mode');
+        body.classList.add('light-mode');
+    } else {
+        body.classList.remove('light-mode');
+        body.classList.add('dark-mode');
+    }
+});
+
+// Define o modo inicial com base no sistema ou salva no localStorage
+window.onload = () => {
+    const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const storedMode = localStorage.getItem("mode");
+
+    if (storedMode) {
+        body.classList.add(storedMode);
+    } else {
+        body.classList.add(prefersDarkScheme ? "dark-mode" : "light-mode");
+    }
+
+    toggleButton.innerText = body.classList.contains('dark-mode') 
+        ? "Mudar para Claro" 
+        : "Mudar para Escuro";
+};
+
+// Atualiza texto do botão ao alternar
+toggleButton.addEventListener('click', () => {
+    const mode = body.classList.contains('dark-mode') ? "dark-mode" : "light-mode";
+    toggleButton.innerText = mode === "dark-mode" ? "Mudar para Claro" : "Mudar para Escuro";
+    localStorage.setItem("mode", mode);
+});
+
+    </script>
+</body>
+</html>
